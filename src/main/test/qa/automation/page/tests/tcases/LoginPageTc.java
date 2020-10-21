@@ -12,7 +12,7 @@ public class LoginPageTc extends BaseTest{
 	
 	
 	@Test
-	public void m1()  {
+	public void loginWithValidCredentials()  {
 	isLoginPageDisplayed();
 	clickLoginExistingUser();
 	enterUserId("6367357113");
