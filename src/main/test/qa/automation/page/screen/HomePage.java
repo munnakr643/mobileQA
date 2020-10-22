@@ -37,5 +37,6 @@ public class HomePage extends ScreenManager {
 	@AndroidFindBy(xpath="//android.widget.Button[@text='Select delivery location']")
 	public MobileElement SelectLocation;
 	
-	
+	@AndroidFindBy(xpath="//android.widget.EditText[@text='Search']")
+	public MobileElement Search;
 }

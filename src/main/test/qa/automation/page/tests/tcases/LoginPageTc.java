@@ -18,6 +18,7 @@ public class LoginPageTc extends BaseTest{
 	clickOnContinueBtn();
 	enterPassword("Pass@123");
 	clickOnLoginBtn();
+	homeBtn();
 	
 	}
 

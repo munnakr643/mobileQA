@@ -1,6 +1,7 @@
 package qa.automation.page.tests.base;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,10 +22,12 @@ import org.testng.annotations.BeforeClass;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import qa.automation.page.screen.CheckoutPage;
 import qa.automation.page.screen.AllAppList;
+import qa.automation.page.screen.CheckoutPage;
 import qa.automation.page.screen.HomePage;
 import qa.automation.page.screen.LoginPage;
 import qa.automation.page.screen.NavBar;
@@ -136,6 +139,19 @@ public class BaseTest {
 			// TODO: handle exception
 		}
 	}
+	/**
+	 * method to HomeBtn
+	 */
+	public void homeBtn() {
+		driver.pressKey(new KeyEvent(AndroidKey.HOME));
+	}
+
+	/**
+	 * method to HomeBtn
+	 */
+	public void backBtn() {
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+	}
 
 	/**
 	 * method to take screenshot
@@ -168,7 +184,7 @@ public class BaseTest {
 		waitElement(loginPage.SignInUrAccText, 6);
 		assertThat(loginPage.SignInUrAccText.isDisplayed(), equalTo(true));
 		assertThat(loginPage.SignInBtn.isDisplayed(), equalTo(true));
-		
+
 	}
 
 	public void clickLoginExistingUser() {
@@ -182,7 +198,7 @@ public class BaseTest {
 		assertThat(loginPage.EnterUserId.isDisplayed(), equalTo(true));
 		loginPage.EnterUserId.sendKeys(emailPhone);
 	}
-	
+
 	public void clickOnContinueBtn() {
 		waitElement(loginPage.ContinueBtn, 6);
 		assertThat(loginPage.ContinueBtn.isDisplayed(), equalTo(true));
@@ -193,13 +209,13 @@ public class BaseTest {
 		assertThat(loginPage.EnterPsw.isDisplayed(), equalTo(true));
 		loginPage.EnterPsw.sendKeys(password);
 	}
-	
+
 	public void clickOnLoginBtn() {
 		waitElement(loginPage.LoginBtn, 6);
 		assertThat(loginPage.LoginBtn.isDisplayed(), equalTo(true));
 		loginPage.LoginBtn.click();
 	}
-	
+
 	/**
 	 * Method to launch amazon app
 	 */
@@ -208,7 +224,7 @@ public class BaseTest {
 		assertThat(allAppList.Amazon.isDisplayed(), equalTo(true));
 		allAppList.Amazon.click();
 	}
-	
+
 	/**
 	 * Method to launch all apps
 	 */
@@ -218,7 +234,7 @@ public class BaseTest {
 		assertThat(allAppList.Handle_container.isDisplayed(), equalTo(true));
 		allAppList.Handle_container.click();
 	}
-	
+
 	public void isHomePageDisplayed() {
 		waitElement(homePage.Mobiles, 6);
 		assertThat(homePage.Mobiles.isDisplayed(), equalTo(true));
@@ -229,23 +245,36 @@ public class BaseTest {
 	}
 
 	public void verifyNavBarOnHomePage() {
-		waitElement(navBar.HamburgerMenuBtn, 6);
+		waitElement(navBar.AmazonLogo, 6);
 		assertThat(navBar.HamburgerMenuBtn.isDisplayed(), equalTo(true));
 		assertThat(navBar.AmazonLogo.isDisplayed(), equalTo(true));
 		assertThat(navBar.CartLogo.isDisplayed(), equalTo(true));
-		
+
 	}
-	
+
 	public void clcickOnHamburgerMenu() {
 		waitElement(navBar.HamburgerMenuBtn, 6);
 		assertThat(navBar.HamburgerMenuBtn.isDisplayed(), equalTo(true));
 		navBar.HamburgerMenuBtn.click();		
 	}
-	
+
 	public void clcickforLogin() {
 		waitElement(navBar.HelloUser, 6);
 		assertThat(navBar.HelloUser.isDisplayed(), equalTo(true));
 		assertThat(navBar.HelloUser.getText(), equalTo("Hello. Sign In"));
 		navBar.HelloUser.click();		
 	}
+	
+	public void verifySearchBar() {
+		waitElement(homePage.Search, 6);
+		assertThat(homePage.Search.isDisplayed(), equalTo(true));
+		assertThat(navBar.HelloUser.getText(), equalTo("Search"));
+	}
+
+	public void enterTextInSearchBar(String text) {
+		waitElement(homePage.Search, 6);
+		assertThat(homePage.Search.isDisplayed(), equalTo(true));
+		navBar.HelloUser.sendKeys(text);
+	}
+	
 }
