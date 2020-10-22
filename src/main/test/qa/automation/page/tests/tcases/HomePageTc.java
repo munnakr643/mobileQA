@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import qa.automation.page.tests.base.BaseTest;
 
-public class airIn extends BaseTest {
+public class HomePageTc extends BaseTest {
 
 	
 	@Test

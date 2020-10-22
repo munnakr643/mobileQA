@@ -1,7 +1,5 @@
 package qa.automation.page.screen;
 
-import org.openqa.selenium.WebElement;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -21,10 +19,23 @@ public class HomePage extends ScreenManager {
 		super(driver);
 	}
 	
+	@AndroidFindBy(xpath="//android.view.View[@content-desc='Mobiles']")
+	public MobileElement Mobiles;
 	
-	@AndroidFindBy(xpath="//android.widget.TextView[@text='Preference']")
-	public MobileElement Preferences;	
+	@AndroidFindBy(xpath="//android.view.View[@content-desc='Electronics']")
+	public MobileElement Electronics;
 	
+	@AndroidFindBy(xpath="//android.view.View[@content-desc='Home']")
+	public MobileElement Home;
+	
+	@AndroidFindBy(xpath="//android.view.View[@content-desc='Mobiles']")
+	public MobileElement Appliances;
+	
+	@AndroidFindBy(xpath="//android.view.View[@content-desc='Fashion']")
+	public MobileElement Fashion;
+
+	@AndroidFindBy(xpath="//android.widget.Button[@text='Select delivery location']")
+	public MobileElement SelectLocation;
 	
 	
 }

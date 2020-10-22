@@ -24,9 +24,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import qa.automation.page.screen.CheckoutPage;
-import qa.automation.page.screen.FormPage;
+import qa.automation.page.screen.AllAppList;
 import qa.automation.page.screen.HomePage;
 import qa.automation.page.screen.LoginPage;
+import qa.automation.page.screen.NavBar;
 
 public class BaseTest {
 	public static AppiumDriverLocalService service;
@@ -34,9 +35,9 @@ public class BaseTest {
 
 	protected static CheckoutPage checkoutPage;
 	protected static HomePage homePage;
-	protected static FormPage formPage;
 	protected static LoginPage loginPage;
-
+	protected static AllAppList allAppList;
+	protected static NavBar navBar;
 	public AppiumDriverLocalService startServer()
 	{
 		//
@@ -73,9 +74,9 @@ public class BaseTest {
 		capabilities();
 		checkoutPage = new CheckoutPage(driver);
 		homePage = new HomePage(driver);
-		formPage = new FormPage(driver);
 		loginPage = new LoginPage(driver);
-
+		allAppList = new AllAppList(driver);
+		navBar=new NavBar(driver);
 	}
 
 	public static  AndroidDriver<MobileElement> capabilities() throws IOException, InterruptedException
@@ -94,8 +95,10 @@ public class BaseTest {
 		//  String device= System.getProperty("deviceName");
 		String platformName=(String) prop.get("platform");
 		String platformVersion=(String) prop.get("platformVersion");
-		String appPackage=(String) prop.get("appPackage");
-		String appActivity=(String) prop.get("appActivity");
+		String amazonPackage=(String) prop.get("amazonAppPackage");
+		String amazonActivity=(String) prop.get("amazonAppActivity");
+		String pocoPackage=(String) prop.get("pocoAppPackage");
+		String pocoActivity=(String) prop.get("pocoAppActivity");
 		String automationName=(String) prop.get("automationName");
 		String orientationType=(String) prop.get("orientation");
 
@@ -107,8 +110,8 @@ public class BaseTest {
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,platformVersion);
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,platformName);
 		capabilities.setCapability(MobileCapabilityType.ORIENTATION,orientationType);
-		capabilities.setCapability("appPackage", appPackage);;
-		capabilities.setCapability("appActivity", appActivity);;
+		capabilities.setCapability("appPackage", pocoPackage);;
+		capabilities.setCapability("appActivity", pocoActivity);;
 
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -196,5 +199,53 @@ public class BaseTest {
 		assertThat(loginPage.LoginBtn.isDisplayed(), equalTo(true));
 		loginPage.LoginBtn.click();
 	}
+	
+	/**
+	 * Method to launch amazon app
+	 */
+	public void launchAmazonApp() {
+		waitElement(allAppList.Amazon, 6);
+		assertThat(allAppList.Amazon.isDisplayed(), equalTo(true));
+		allAppList.Amazon.click();
+	}
+	
+	/**
+	 * Method to launch all apps
+	 */
+	public void openAllApp() {
+		waitElement(allAppList.Phone, 6);
+		assertThat(allAppList.Phone.isDisplayed(), equalTo(true));
+		assertThat(allAppList.Handle_container.isDisplayed(), equalTo(true));
+		allAppList.Handle_container.click();
+	}
+	
+	public void isHomePageDisplayed() {
+		waitElement(homePage.Mobiles, 6);
+		assertThat(homePage.Mobiles.isDisplayed(), equalTo(true));
+		assertThat(homePage.Electronics.isDisplayed(), equalTo(true));
+		assertThat(homePage.Home.isDisplayed(), equalTo(true));
+		assertThat(homePage.Appliances.isDisplayed(), equalTo(true));
+		assertThat(homePage.Fashion.isDisplayed(), equalTo(true));
+	}
 
+	public void verifyNavBarOnHomePage() {
+		waitElement(navBar.HamburgerMenuBtn, 6);
+		assertThat(navBar.HamburgerMenuBtn.isDisplayed(), equalTo(true));
+		assertThat(navBar.AmazonLogo.isDisplayed(), equalTo(true));
+		assertThat(navBar.CartLogo.isDisplayed(), equalTo(true));
+		
+	}
+	
+	public void clcickOnHamburgerMenu() {
+		waitElement(navBar.HamburgerMenuBtn, 6);
+		assertThat(navBar.HamburgerMenuBtn.isDisplayed(), equalTo(true));
+		navBar.HamburgerMenuBtn.click();		
+	}
+	
+	public void clcickforLogin() {
+		waitElement(navBar.HelloUser, 6);
+		assertThat(navBar.HelloUser.isDisplayed(), equalTo(true));
+		assertThat(navBar.HelloUser.getText(), equalTo("Hello. Sign In"));
+		navBar.HelloUser.click();		
+	}
 }

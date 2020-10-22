@@ -24,15 +24,20 @@ public class Preferences extends ScreenManager {
 		super(driver);
 	}
 	
+	@AndroidFindBy(xpath="//android.view.View[@text='Login. Already a customer?']")
+	public MobileElement AlreadyCustrText;
 	
-	@AndroidFindBy(xpath="//android.widget.TextView[@text='3. Preference dependencies']")
-	public WebElement dependencies;
+	@AndroidFindBy(xpath="//android.widget.EditText[contains(@resource-id,'ap_email_login')]")
+	public MobileElement EnterUserId;
 	
+	@AndroidFindBy(xpath="//android.widget.Button[contains(@resource-id,'continue')]")
+	public MobileElement ContinueBtn;
 	
-
-	@AndroidFindBy(className="android.widget.Button")
-	public List<WebElement> buttons;
+	@AndroidFindBy(xpath="//android.widget.EditText[contains(@resource-id,'ap_password')]")
+	public MobileElement EnterPsw;
 	
+	@AndroidFindBy(xpath="//android.widget.Button[contains(@resource-id,'signInSubmit')]")
+	public MobileElement LoginBtn;
 	
 	
 }
