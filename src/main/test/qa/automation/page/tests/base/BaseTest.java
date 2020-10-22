@@ -12,6 +12,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -265,16 +266,18 @@ public class BaseTest {
 		navBar.HelloUser.click();		
 	}
 	
-	public void verifySearchBar() {
+	public void isSearchBarDisplayed() {
 		waitElement(homePage.Search, 6);
 		assertThat(homePage.Search.isDisplayed(), equalTo(true));
-		assertThat(navBar.HelloUser.getText(), equalTo("Search"));
+		//assertThat(homePage.Search.getText(), equalTo("Search"));
 	}
 
 	public void enterTextInSearchBar(String text) {
 		waitElement(homePage.Search, 6);
 		assertThat(homePage.Search.isDisplayed(), equalTo(true));
-		navBar.HelloUser.sendKeys(text);
+		homePage.Search.click();
+		homePage.Search.sendKeys(text);
+		driver.pressKey(new KeyEvent(AndroidKey.ENTER));
 	}
 	
 }
