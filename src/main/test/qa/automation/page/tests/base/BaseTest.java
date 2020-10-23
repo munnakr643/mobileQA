@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -30,8 +31,10 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import qa.automation.page.screen.AllAppList;
 import qa.automation.page.screen.CheckoutPage;
 import qa.automation.page.screen.HomePage;
+import qa.automation.page.screen.ListingPage;
 import qa.automation.page.screen.LoginPage;
 import qa.automation.page.screen.NavBar;
+import qa.automation.page.screen.ProductDetailsPage;
 
 public class BaseTest {
 	public static AppiumDriverLocalService service;
@@ -42,6 +45,11 @@ public class BaseTest {
 	protected static LoginPage loginPage;
 	protected static AllAppList allAppList;
 	protected static NavBar navBar;
+	protected static ListingPage listingPage;
+	protected static ProductDetailsPage productDetailsPage;
+	
+	
+	
 	public AppiumDriverLocalService startServer()
 	{
 		//
@@ -81,8 +89,12 @@ public class BaseTest {
 		loginPage = new LoginPage(driver);
 		allAppList = new AllAppList(driver);
 		navBar=new NavBar(driver);
+		listingPage=new ListingPage(driver);
+		productDetailsPage=new ProductDetailsPage(driver);
 	}
 
+	
+	
 	public static  AndroidDriver<MobileElement> capabilities() throws IOException, InterruptedException
 	{
 
@@ -280,4 +292,49 @@ public class BaseTest {
 		driver.pressKey(new KeyEvent(AndroidKey.ENTER));
 	}
 	
+	public void scrollToText(String text) {
+		driver.findElement(MobileBy
+				.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));")).click();
+		
+	}
+	
+	public void clickListingProduct() {
+		waitElement(listingPage.ProductName, 6);
+		assertThat(listingPage.ProductName.isDisplayed(), equalTo(true));
+		assertThat(listingPage.Price.isDisplayed(), equalTo(true));
+		listingPage.ProductName.click();
+	}
+	
+	public String getProductNameOnLp() {
+		waitElement(listingPage.ProductName, 6);
+		assertThat(listingPage.ProductName.isDisplayed(), equalTo(true));
+		String st=listingPage.ProductName.getText();
+		return st;
+	}
+	
+	public String getPriceOnLp() {
+		waitElement(listingPage.Price, 6);
+		assertThat(listingPage.Price.isDisplayed(), equalTo(true));
+		String st=listingPage.Price.getText();
+		return st;
+	}
+	
+	public void clickCartOnProductPage() {
+		waitElement(productDetailsPage.CartOnProdctpage, 6);
+		assertThat(productDetailsPage.CartOnProdctpage.isDisplayed(), equalTo(true));
+		productDetailsPage.CartOnProdctpage.click();
+	}
+	public String getProductNameOnPdp() {
+		waitElement(productDetailsPage.ProductNameOnProductpage, 6);
+		assertThat(productDetailsPage.ProductNameOnProductpage.isDisplayed(), equalTo(true));
+		String st=productDetailsPage.ProductNameOnProductpage.getText();
+		return st;
+	}
+	
+	public String getPriceOnPdp() {
+		waitElement(productDetailsPage.PriceOnProductage, 6);
+		assertThat(productDetailsPage.PriceOnProductage.isDisplayed(), equalTo(true));
+		String st=productDetailsPage.PriceOnProductage.getText();
+		return st;
+	}
 }

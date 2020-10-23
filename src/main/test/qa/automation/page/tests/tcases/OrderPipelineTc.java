@@ -20,5 +20,13 @@ public class OrderPipelineTc extends BaseTest {
 		clickOnLoginBtn();
 		isSearchBarDisplayed();
 		enterTextInSearchBar("65 inch tv");
+		String productName=getProductNameOnLp();
+		String price=getPriceOnLp();
+		clickListingProduct();
+		getProductNameOnPdp().equals(productName);
+		getPriceOnPdp().equals(price);
+		scrollToText("Add to Cart");
+		clickCartOnProductPage();
+		homeBtn();
 	}
 }

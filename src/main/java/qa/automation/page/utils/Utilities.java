@@ -21,9 +21,4 @@ public class Utilities {
 	{
 	     ((FindsByAndroidUIAutomator<MobileElement>) driver).findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"+text\"));");
 	}
-	public void scrollToText(String text) {
-		driver.findElement(MobileBy
-				.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));"));
-		//text(\"India Bangalore\"));"
-	}
 }
