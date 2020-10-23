@@ -12,8 +12,7 @@
   <test name="Ui-testing">
   
     <classes>
-      <class name="qa.automation.page.tests.tcases.Ecommerce_tc_4"/>
-      <class name="qa.automation.page.tests.tcases.airIn"/>
+      <class name="qa.automation.page.tests.tcases.OrderPipelineTc"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
