@@ -4,9 +4,8 @@
 
 <listeners>
 		<listener
-			class-name="qa.automation.page.utils.TestListener" />
-		<listener
-			class-name="qa.automation.page.utils.ExtentReporterNG" />
+			class-name="qa.automation.listener.TestListener" />
+	
 	</listeners>
 	
   <test name="Ui-testing">
