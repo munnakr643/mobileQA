@@ -19,7 +19,7 @@ public class AllAppList extends ScreenManager {
 	}
 	
 	
-	@AndroidFindBy(xpath="//android.widget.FrameLayout[@content-desc='Amazon Shopping']")
+	@AndroidFindBy(xpath="//android.widget.FrameLayout[@content-desc='Amazon']")
 	public MobileElement Amazon;
 	
 	@AndroidFindBy(xpath="//android.widget.FrameLayout[@content-desc='Maps']")

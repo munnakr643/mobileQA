@@ -1,18 +1,19 @@
 package qa.automation.page.tests.base;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -37,8 +38,11 @@ import qa.automation.page.screen.NavBar;
 import qa.automation.page.screen.ProductDetailsPage;
 
 public class BaseTest {
+
+	private final static Logger logger = LogManager.getLogger(BaseTest.class);
+
 	public static AppiumDriverLocalService service;
-	public static AndroidDriver<MobileElement>  driver;
+	public static AndroidDriver<MobileElement> driver;
 
 	protected static CheckoutPage checkoutPage;
 	protected static HomePage homePage;
@@ -47,39 +51,37 @@ public class BaseTest {
 	protected static NavBar navBar;
 	protected static ListingPage listingPage;
 	protected static ProductDetailsPage productDetailsPage;
-	
-	
-	
-	public AppiumDriverLocalService startServer()
-	{
-		//
-		boolean flag=	checkIfServerIsRunnning(4723);
-		if(!flag)
-		{
 
-			service=AppiumDriverLocalService.buildDefaultService();
-			service.start();
-		}
-		return service;
+//	public AppiumDriverLocalService startServer()
+//	{
+//		//
+//		boolean flag=	checkIfServerIsRunnning(4723);
+//		if(!flag)
+//		{
+//
+//			service=AppiumDriverLocalService.buildDefaultService();
+//			service.start();
+//		}
+//		return service;
+//
+//	}
 
-	}
-
-	public static boolean checkIfServerIsRunnning(int port) {
-
-		boolean isServerRunning = false;
-		ServerSocket serverSocket;
-		try {
-			serverSocket = new ServerSocket(port);
-
-			serverSocket.close();
-		} catch (IOException e) {
-			//If control comes here, then it means that the port is in use
-			isServerRunning = true;
-		} finally {
-			serverSocket = null;
-		}
-		return isServerRunning;
-	}
+//	public static boolean checkIfServerIsRunnning(int port) {
+//
+//		boolean isServerRunning = false;
+//		ServerSocket serverSocket;
+//		try {
+//			serverSocket = new ServerSocket(port);
+//
+//			serverSocket.close();
+//		} catch (IOException e) {
+//			//If control comes here, then it means that the port is in use
+//			isServerRunning = true;
+//		} finally {
+//			serverSocket = null;
+//		}
+//		return isServerRunning;
+//	}
 
 	@BeforeClass(alwaysRun = true)
 	public void intializeClass() throws IOException, InterruptedException {
@@ -88,54 +90,51 @@ public class BaseTest {
 		homePage = new HomePage(driver);
 		loginPage = new LoginPage(driver);
 		allAppList = new AllAppList(driver);
-		navBar=new NavBar(driver);
-		listingPage=new ListingPage(driver);
-		productDetailsPage=new ProductDetailsPage(driver);
+		navBar = new NavBar(driver);
+		listingPage = new ListingPage(driver);
+		productDetailsPage = new ProductDetailsPage(driver);
 	}
 
-	
-	
-	public static  AndroidDriver<MobileElement> capabilities() throws IOException, InterruptedException
-	{
+	public static AndroidDriver<MobileElement> capabilities() throws IOException, InterruptedException {
 
-		FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/global.properties");
-		Properties prop=new Properties();
+		FileInputStream fis = new FileInputStream(
+				System.getProperty("user.dir") + "/src/main/resources/global.properties");
+		Properties prop = new Properties();
 		prop.load(fis);
-
-
 
 		// TODO Auto-generated method stub
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		String device=(String) prop.get("deviceName");
-		//  String device= System.getProperty("deviceName");
-		String platformName=(String) prop.get("platform");
-		String platformVersion=(String) prop.get("platformVersion");
-		String amazonPackage=(String) prop.get("amazonAppPackage");
-		String amazonActivity=(String) prop.get("amazonAppActivity");
-		String pocoPackage=(String) prop.get("pocoAppPackage");
-		String pocoActivity=(String) prop.get("pocoAppActivity");
-		String automationName=(String) prop.get("automationName");
-		String orientationType=(String) prop.get("orientation");
-
-
+		String device = (String) prop.get("deviceName");
+		// String device= System.getProperty("deviceName");
+		String platformName = (String) prop.get("platform");
+		String platformVersion = (String) prop.get("platformVersion");
+		String amazonPackage = (String) prop.get("amazonAppPackage");
+		String amazonActivity = (String) prop.get("amazonAppActivity");
+		String pocoPackage = (String) prop.get("pocoAppPackage");
+		String pocoActivity = (String) prop.get("pocoAppActivity");
+		String automationName = (String) prop.get("automationName");
+		String orientationType = (String) prop.get("orientation");
 
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
-		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,automationName);
-		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT,14);
-		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,platformVersion);
-		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,platformName);
-		capabilities.setCapability(MobileCapabilityType.ORIENTATION,orientationType);
-		capabilities.setCapability("appPackage", pocoPackage);;
-		capabilities.setCapability("appActivity", pocoActivity);;
+		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, automationName);
+		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
+		capabilities.setCapability(MobileCapabilityType.ORIENTATION, orientationType);
+		capabilities.setCapability("appPackage", pocoPackage);
+		;
+		capabilities.setCapability("appActivity", pocoActivity);
+		;
 
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		return driver;
 	}
+
 	/**
-	 * Element visibility 
+	 * Element visibility
 	 */
 	public void waitElement(MobileElement element, int timer) {
 		WebDriverWait wait = new WebDriverWait(driver, timer);
@@ -152,6 +151,7 @@ public class BaseTest {
 			// TODO: handle exception
 		}
 	}
+
 	/**
 	 * method to HomeBtn
 	 */
@@ -169,13 +169,11 @@ public class BaseTest {
 	/**
 	 * method to take screenshot
 	 */
-	public static void getScreenshot(String s) throws IOException
-	{
-		File scrfile=	((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrfile,new File(System.getProperty("user.dir")+"\\"+s+".png"));
+	public static void getScreenshot(String s) throws IOException {
+		File scrfile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrfile, new File(System.getProperty("user.dir") + "\\" + s + ".png"));
 
 	}
-
 
 	/**
 	 * method to handle context
@@ -191,7 +189,7 @@ public class BaseTest {
 	}
 
 	/**
-	 * method to verify login page 
+	 * method to verify login page
 	 */
 	public void isLoginPageDisplayed() {
 		waitElement(loginPage.SignInUrAccText, 6);
@@ -206,6 +204,7 @@ public class BaseTest {
 		assertThat(loginPage.SignInBtn.isDisplayed(), equalTo(true));
 		loginPage.SignInBtn.click();
 	}
+
 	public void enterUserId(String emailPhone) {
 		waitElement(loginPage.EnterUserId, 6);
 		assertThat(loginPage.EnterUserId.isDisplayed(), equalTo(true));
@@ -217,6 +216,7 @@ public class BaseTest {
 		assertThat(loginPage.ContinueBtn.isDisplayed(), equalTo(true));
 		loginPage.ContinueBtn.click();
 	}
+
 	public void enterPassword(String password) {
 		waitElement(loginPage.EnterPsw, 6);
 		assertThat(loginPage.EnterPsw.isDisplayed(), equalTo(true));
@@ -268,20 +268,20 @@ public class BaseTest {
 	public void clcickOnHamburgerMenu() {
 		waitElement(navBar.HamburgerMenuBtn, 6);
 		assertThat(navBar.HamburgerMenuBtn.isDisplayed(), equalTo(true));
-		navBar.HamburgerMenuBtn.click();		
+		navBar.HamburgerMenuBtn.click();
 	}
 
 	public void clcickforLogin() {
 		waitElement(navBar.HelloUser, 6);
 		assertThat(navBar.HelloUser.isDisplayed(), equalTo(true));
 		assertThat(navBar.HelloUser.getText(), equalTo("Hello. Sign In"));
-		navBar.HelloUser.click();		
+		navBar.HelloUser.click();
 	}
-	
+
 	public void isSearchBarDisplayed() {
 		waitElement(homePage.Search, 6);
 		assertThat(homePage.Search.isDisplayed(), equalTo(true));
-		//assertThat(homePage.Search.getText(), equalTo("Search"));
+		// assertThat(homePage.Search.getText(), equalTo("Search"));
 	}
 
 	public void enterTextInSearchBar(String text) {
@@ -291,50 +291,52 @@ public class BaseTest {
 		homePage.Search.sendKeys(text);
 		driver.pressKey(new KeyEvent(AndroidKey.ENTER));
 	}
-	
+
 	public void scrollToText(String text) {
 		driver.findElement(MobileBy
-				.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));")).click();
-		
+				.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"));"))
+				.click();
+
 	}
-	
+
 	public void clickListingProduct() {
 		waitElement(listingPage.ProductName, 6);
 		assertThat(listingPage.ProductName.isDisplayed(), equalTo(true));
 		assertThat(listingPage.Price.isDisplayed(), equalTo(true));
 		listingPage.ProductName.click();
 	}
-	
+
 	public String getProductNameOnLp() {
 		waitElement(listingPage.ProductName, 6);
 		assertThat(listingPage.ProductName.isDisplayed(), equalTo(true));
-		String st=listingPage.ProductName.getText();
+		String st = listingPage.ProductName.getText();
 		return st;
 	}
-	
+
 	public String getPriceOnLp() {
 		waitElement(listingPage.Price, 6);
 		assertThat(listingPage.Price.isDisplayed(), equalTo(true));
-		String st=listingPage.Price.getText();
+		String st = listingPage.Price.getText();
 		return st;
 	}
-	
+
 	public void clickCartOnProductPage() {
 		waitElement(productDetailsPage.CartOnProdctpage, 6);
 		assertThat(productDetailsPage.CartOnProdctpage.isDisplayed(), equalTo(true));
 		productDetailsPage.CartOnProdctpage.click();
 	}
+
 	public String getProductNameOnPdp() {
 		waitElement(productDetailsPage.ProductNameOnProductpage, 6);
 		assertThat(productDetailsPage.ProductNameOnProductpage.isDisplayed(), equalTo(true));
-		String st=productDetailsPage.ProductNameOnProductpage.getText();
+		String st = productDetailsPage.ProductNameOnProductpage.getText();
 		return st;
 	}
-	
+
 	public String getPriceOnPdp() {
 		waitElement(productDetailsPage.PriceOnProductage, 6);
 		assertThat(productDetailsPage.PriceOnProductage.isDisplayed(), equalTo(true));
-		String st=productDetailsPage.PriceOnProductage.getText();
+		String st = productDetailsPage.PriceOnProductage.getText();
 		return st;
 	}
 }
