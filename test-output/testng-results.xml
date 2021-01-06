@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results skipped="0" failed="0" ignored="3" total="4" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-10-23T01:14:44 IST" name="Default suite" finished-at="2020-10-23T01:15:32 IST" duration-ms="48281">
+  <suite name="Regression Suite" duration-ms="141857" started-at="2021-01-06T21:36:58Z" finished-at="2021-01-06T21:39:20Z">
     <groups>
       <group name="regression">
-        <method signature="LoginPageTc.loginWithValidCredentials()[pri:-1, instance:qa.automation.page.tests.tcases.LoginPageTc@2a54a73f]" name="loginWithValidCredentials" class="qa.automation.page.tests.tcases.LoginPageTc"/>
+        <method signature="FourWheelerTestCases.verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018()[pri:1, instance:qa.automation.page.tests.tcases.FourWheelerTestCases@3738449f]" name="verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018" class="qa.automation.page.tests.tcases.FourWheelerTestCases"/>
       </group> <!-- regression -->
     </groups>
-    <test started-at="2020-10-23T01:14:44 IST" name="Default test" finished-at="2020-10-23T01:15:32 IST" duration-ms="48281">
-      <class name="qa.automation.page.tests.tcases.LoginPageTc">
-        <test-method is-config="true" signature="intializeClass()[pri:0, instance:qa.automation.page.tests.tcases.LoginPageTc@2a54a73f]" started-at="2020-10-23T01:14:44 IST" name="intializeClass" finished-at="2020-10-23T01:14:58 IST" duration-ms="13972" status="PASS">
+    <test name="Ui-testing" duration-ms="141857" started-at="2021-01-06T21:36:58Z" finished-at="2021-01-06T21:39:20Z">
+      <class name="qa.automation.page.tests.tcases.FourWheelerTestCases">
+        <test-method status="PASS" signature="intializeClass()[pri:0, instance:qa.automation.page.tests.tcases.FourWheelerTestCases@3738449f]" name="intializeClass" is-config="true" duration-ms="11511" started-at="2021-01-06T21:36:58Z" finished-at="2021-01-06T21:37:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- intializeClass -->
-        <test-method signature="loginWithValidCredentials()[pri:-1, instance:qa.automation.page.tests.tcases.LoginPageTc@2a54a73f]" started-at="2020-10-23T01:14:58 IST" name="loginWithValidCredentials" finished-at="2020-10-23T01:15:32 IST" duration-ms="34255" status="PASS">
+        <test-method status="PASS" signature="verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018()[pri:1, instance:qa.automation.page.tests.tcases.FourWheelerTestCases@3738449f]" name="verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018" duration-ms="130303" started-at="2021-01-06T21:37:09Z" finished-at="2021-01-06T21:39:20Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginWithValidCredentials -->
-      </class> <!-- qa.automation.page.tests.tcases.LoginPageTc -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018 -->
+      </class> <!-- qa.automation.page.tests.tcases.FourWheelerTestCases -->
+    </test> <!-- Ui-testing -->
+  </suite> <!-- Regression Suite -->
 </testng-results>

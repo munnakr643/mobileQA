@@ -9,10 +9,7 @@ import org.testng.TestNG;
 import org.testng.xml.Parser;
 import org.testng.xml.XmlSuite;
 
-/**
- * 
- *
- */
+
 public class Application {
 
 	private final static Logger logger = LogManager.getLogger(Application.class);
