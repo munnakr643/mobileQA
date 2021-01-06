@@ -17,30 +17,19 @@ public class LoginPage extends ScreenManager {
 	{
 		super(driver);
 	}
-	
-	
-	@AndroidFindBy(xpath="//android.widget.Button[@text='Already a customer? Sign in']")
-	public MobileElement SignInBtn;
-	
-	@AndroidFindBy(xpath="//android.widget.TextView[@text='Sign in to your account']")
-	public MobileElement SignInUrAccText;
-	
-	@AndroidFindBy(xpath="//android.widget.Button[@text='Skip sign in]")
-	public MobileElement SkipSignIn;
-	
-	@AndroidFindBy(xpath="//android.view.View[@text='Login. Already a customer?']")
-	public MobileElement AlreadyCustrText;
-	
-	@AndroidFindBy(xpath="//android.widget.EditText[contains(@resource-id,'ap_email_login')]")
-	public MobileElement EnterUserId;
-	
-	@AndroidFindBy(xpath="//android.widget.Button[contains(@resource-id,'continue')]")
-	public MobileElement ContinueBtn;
-	
-	@AndroidFindBy(xpath="//android.widget.EditText[contains(@resource-id,'ap_password')]")
-	public MobileElement EnterPsw;
-	
-	@AndroidFindBy(xpath="//android.widget.Button[contains(@resource-id,'signInSubmit')]")
-	public MobileElement LoginBtn;
-	
+
+	@AndroidFindBy(xpath="//android.widget.EditText[@text='E.g.9876543210']")
+	public MobileElement enterMobileNum;
+
+	@AndroidFindBy(xpath="//android.widget.CheckBox[contains(@resource-id,'checkbox')]")
+	public MobileElement clickOnCheckbox;
+
+	@AndroidFindBy(xpath="//android.widget.Button[@text='Proceed']")
+	public MobileElement clickProceedBtn;
+
+	@AndroidFindBy(xpath="//android.widget.EditText[contains(@resource-id,'etOTP')]")
+	public MobileElement EnterOtp;
+
+	@AndroidFindBy(xpath="//android.widget.Button[@text='Verify OTP']")
+	public MobileElement verifyOtp;
 }

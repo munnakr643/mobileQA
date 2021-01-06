@@ -1,19 +1,17 @@
 package qa.automation.listener;
 
-import java.util.Arrays;
-
+import com.google.common.collect.Lists;
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import com.google.common.collect.Lists;
-import com.relevantcodes.extentreports.LogStatus;
-
 import qa.automation.page.tests.base.BaseTest;
 import qa.automation.report.ExtentReportManager;
 import qa.automation.report.ExtentTestManager;
+
+import java.util.Arrays;
 
 
 public class TestListener extends BaseTest implements ITestListener{

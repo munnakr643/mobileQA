@@ -1,7 +1,4 @@
 package qa.automation.execution;
-import java.io.IOException;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,10 +6,10 @@ import org.testng.TestNG;
 import org.testng.xml.Parser;
 import org.testng.xml.XmlSuite;
 
-/**
- * 
- *
- */
+import java.io.IOException;
+import java.util.List;
+
+
 public class Application {
 
 	private final static Logger logger = LogManager.getLogger(Application.class);

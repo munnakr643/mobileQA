@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="qa.automation.page.tests.tcases.LoginPageTc">
+      <class name="qa.automation.page.tests.tcases.TwoWheelerTestCases">
         <methods>
+          <include name="verifyOrderPipeline"/>
           <include name="intializeClass"/>
-          <include name="loginWithValidCredentials"/>
         </methods>
-      </class> <!-- qa.automation.page.tests.tcases.LoginPageTc -->
+      </class> <!-- qa.automation.page.tests.tcases.OrderPipelineTc -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
