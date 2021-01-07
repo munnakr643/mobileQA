@@ -152,6 +152,7 @@ public class FourWheelerTestCases extends BaseTest {
     @Test(priority = 1,groups = { "regression" })
     public void verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018() {
         //Regestration after july 2018
+        //verify copmrePlan verifyCopmPlanForWithTataAigAfterJuly2018
         openAllApp();
         searchApp("Ice Insurance");
         launchIceApp();

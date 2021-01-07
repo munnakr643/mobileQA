@@ -10,10 +10,10 @@
   <test name="Ui-testing">
 
     <classes>
-      <class name="qa.automation.page.tests.tcases.FourWheelerTestCases">
-          <methods>
-              <include name="verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018"></include>
-          </methods>
+      <class name="qa.automation.page.tests.tcases.LoginPageTestCases">
+<!--          <methods>-->
+<!--              <include name="verifyCopmPlanForHondaCityPetrolExiWithTataAigAfterJuly2018"></include>-->
+<!--          </methods>-->
       </class>
     </classes>
   </test> <!-- Test -->

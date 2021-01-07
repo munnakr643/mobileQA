@@ -277,13 +277,30 @@ public class BaseTest {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Otp entered successfully");
 
 	}
+
+	public void selectCheckbox() {
+		waitElement(loginPage.checkBox, 6);
+		assertThat(loginPage.checkBox.isDisplayed(), equalTo(true));
+		loginPage.checkBox.click();
+		ExtentTestManager.getTest().log(LogStatus.PASS, "checkbox clicked successfully");
+
+	}
+
 	public void clickOnProceed() {
 		waitElement(loginPage.proceedBtn, 6);
 		assertThat(loginPage.proceedBtn.isDisplayed(), equalTo(true));
 		loginPage.proceedBtn.click();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "proceed clicked successfully");
+	}
+
+	public void clickOnContinueBtn() {
+		waitElement(loginPage.continueBtn, 6);
+		assertThat(loginPage.continueBtn.isDisplayed(), equalTo(true));
+		loginPage.continueBtn.click();
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Continue clicked successfully");
 
 	}
+
 
 	public void isIceHomePageDisplayed() {
 		waitElement(homePage.Profile, 6);

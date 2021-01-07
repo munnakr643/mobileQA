@@ -11,6 +11,8 @@ public class LoginPageTestCases extends BaseTest{
 		openAllApp();
 		searchApp("Ice Insurance");
 		launchIceApp();
+		selectCheckbox();
+		clickOnContinueBtn();
 		enterLoginId("9875553434");
 		clickOnProceed();
 		enterOtp("123456");

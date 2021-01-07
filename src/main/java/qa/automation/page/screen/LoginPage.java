@@ -32,4 +32,10 @@ public class LoginPage extends ScreenManager {
 
 	@AndroidFindBy(xpath="//android.widget.Button[@text='Verify OTP']")
 	public MobileElement verifyOtp;
+
+	@AndroidFindBy(xpath="//android.widget.CheckBox[contains(@resource-id,'checkbox')]")
+	public MobileElement checkBox;
+
+	@AndroidFindBy(xpath="//android.widget.Button[@text='Continue']")
+	public MobileElement continueBtn;
 }
